@@ -93,9 +93,8 @@
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Dados lógicos ``
-                `java
+                ##Dados lógicos
+                ```java
                     class TiposDeDadosPrimarios {
                         // Método principal que aonde o programa será executado
                         public static void main(String[] args) {
@@ -103,16 +102,14 @@
                             boolean ehVerdadeiro = true;
                         }
                     }
-                    `
-                ``
+                    ```
                 </script>
             </section>
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Dados numéricos ``
-                `java
+                ##Dados numéricos
+                ```java
                     class TiposDeDadosPrimarios2 {
                         // Método principal que aonde o programa será executado
                         public static void main(String[] args) {
@@ -149,16 +146,14 @@
 
                         }
                     }
-                    `
-                ``
+                ```
                 </script>
             </section>
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Dados numéricos reais ``
-                `java
+                ## Dados numéricos reais
+                ```java
                     class TiposDeDadosPrimarios2 {
                         // Método principal que aonde o programa será executado
                         public static void main(String[] args) {
@@ -176,16 +171,14 @@
                             double valorNegativo = -88.87;
                             double maisNumero = 124D;   // 'D': Representação literal de double
                         }
-                    `
-                ``
+                    ```
                 </script>
             </section>
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Dados de caracteres ``
-                `java
+                ## Dados de caracteres
+                ```java
                     class TiposDeDadosPrimarios2 {
                         // Método principal que aonde o programa será executado
                         public static void main(String[] args) {
@@ -200,8 +193,7 @@
                             char letraB = 'b';
                             char letraNoFormatoUnicode = '\u0041';
                         }
-                    `
-                ``
+                    ```
                 </script>
             </section>
 
@@ -246,11 +238,10 @@
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Dados de caracteres
-                 É um processo para atribuir valor de um tipo de variável para outro tipo de variável.
-                ``
-                `java
+                ## Dados de caracteres
+                É um processo para atribuir valor de um tipo de variável para outro tipo de variável.
+
+                ```java
                     float a  = (float) 5.0;  //Conversão do double 5.0 para float.
 
                     int b = (int) 5.1987;   //Conversão de double para int.
@@ -258,8 +249,7 @@
                     float c = 100;   // De int para float sendo implícito, não precisa de casting.
 
                     int d = 'd';     // De char para int é implícito, não precisa de casting.
-                    `
-                ``
+                ```
                 </script>
             </section>
 
@@ -273,43 +263,34 @@
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Estrutura condicional##### Instrução
-                if e
-                else
-                    ``
-                `java
+                ## Estrutura condicional
+                ##### Instrução if e else
+                ```java
                     int myAge = 12;
                     if (myAge < 18) {
                         System.out.println("Menos de idade");
                     } else {
                         System.out.println("Maior de idade");
                     }
-                    `
-                ``
+                ```
 
-                ``
-                `java
+                ```java
                     // Sendo uma linha nos blocos if e else, chave é opcional
                     int myAge = 12;
                     if (myAge < 18)
                         System.out.println("Menos de idade");
                     else
                         System.out.println("Maior de idade");
-                    `
-                ``
+                ```
                 </script>
             </section>
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Estrutura condicional##### Instrução
-                if e
-                else
+                ## Estrutura condicional
+                ##### Instrução if e else
 
-                    ``
-                `java
+                ```java
                     // Usando ifs aninhados
                     int myAge = 18;
                     if (myAge < 10)
@@ -322,19 +303,16 @@
                         System.out.println("Jovem");
                     else
                         System.out.println("Adulto");
-                    `
-                ``
+                    ```
                 </script>
             </section>
 
             <section data-markdown>
                 <script type="text/template">
-                ##
-                Estrutura condicional##### Instrução
-                switch
+                ## Estrutura condicional
+                ##### Instrução switch
 
-                 ``
-                `java
+                ```java
                     switch ( <condição> )
                     {
                        case <valor1>: <bloco de programa1 a ser executado>
@@ -350,17 +328,16 @@
                        default: <bloco de programa a ser executado caso nenhuma das condições acima seja adequada>
                        break;
                     }
-                    `
-                ``
+                ```
                 </script>
             </section>
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Estrutura condicional##### Instrução
-                switch ``
-                `java
+                ## Estrutura condicional
+                ##### Instrução switch
+
+                ```java
                     switch (dia_da_semana) {
                         case 1: System.out.println("Domingo");
                         break;
@@ -386,45 +363,39 @@
                         default: System.out.println("O dia da semana está errado.");
                         break;
                     }
-                    `
-                ``
+                ```
                 </script>
             </section>
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Estrutura de repetição##### Instrução
-                while ``
-                `java
+                ## Estrutura de repetição
+                ##### Instrução while
+
+                ```java
                     int age = 15;
                     while (age < 18) {
                       System.out.println(age);
                       age = age + 1;
                     }
-                    `
-                ``
+                ```
                 </script>
             </section>
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Estrutura de repetição##### Instrução
-                for ``
-                `java
+                ## Estrutura de repetição
+                ##### Instrução for
+                ```java
                     for (inicializacao; condicao; incremento) {
                       codigo;
                     }
-                    `
-                ``
-                ``
-                `java
+                ```
+                ```java
                     for (int i = 0; i < 10; i = i + 1) {
                       System.out.println("Hi!");
                     }
-                    `
-                ``
+                ```
                 </script>
             </section>
 
@@ -464,9 +435,8 @@
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Arrays ``
-                `java
+                ## Arrays
+                ```java
                     // Declarando um array de inteiros
                     int[] arrayA = new int[5];
 
@@ -484,8 +454,7 @@
                     // Imprimindo valor de um item do array
                     System.out.println(arrayA[0]);
                     System.out.println(arrayA[1]);
-                    `
-                ``
+                ```
                 </script>
             </section>
 
@@ -540,9 +509,8 @@
 
             <section data-markdown contenteditable>
                 <script type="text/template">
-                ##
-                Exemplo de classe Java ``
-                `java
+                ## Exemplo de classe Java
+                ```java
                     class Bicycle {
 
                         int cadence = 0;
@@ -571,8 +539,7 @@
                                  speed + " gear:" + gear);
                         }
                     }
-                    `
-                ``
+                ```
                 </script>
             </section>
 
