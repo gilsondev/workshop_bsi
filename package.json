@@ -3,6 +3,7 @@
   "version": "2.6.2",
   "description": "The HTML Presentation Framework",
   "homepage": "http://lab.hakim.se/reveal-js",
+  "main": "web.js",
   "subdomain": "revealjs",
   "scripts": {
     "test": "grunt test",
