@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Workshop: Java e Orientação a Objetos | Dia 01</title>
+
+    <meta name="description" content="Slide do primeiro dia do workshop Java e Orientação a Objetos">
+    <meta name="author" content="Gilson Filho">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/github.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    if (window.location.search.match(/print-pdf/gi)) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <h1>Java e Orientação a Objetos</h1>
+                <h3>Dia 01</h3>
+                <p>
+                    <small>
+                        Gilson Filho:
+                        <a href="http://github.com/gilsondev">Github</a> / <a href="http://twitter.com/gilsonfilho">@gilsonfilho</a>
+                    </small>
+                </p>
+            </section>
+
+            <section>
+                <h2>História do Java</h2>
+                <iframe width="640" height="360" src="//www.youtube.com/embed/WAy9mgEYb6o?rel=0" frameborder="0" allowfullscreen></iframe>
+            </section>
+
+            <section>
+                <h2>O que é Máquina Virtual?</h2>
+                <p>É um programa que carrega e executa os aplicativos Java, convertendo os bytecodes em códido executável de máquina.</p>
+                <p>Por esse motivo, qualquer programa Java pode funcionar em qualquer plataforma, desde que tenha uma versão da JVM.</p>
+            </section>
+
+            <section>
+                <h2>Como funciona a Máquina Virtual Java?</h2>
+            </section>
+
+            <section>
+                <img src="img/diagrama_fluxo_jvm.png" alt="">
+            </section>
+
+            <section>
+                <h2>Características</h2>
+                <ul>
+                    <li>Orientada a Objetos</li>
+                    <li>Portável - <i>write once, run anywhere</i></li>
+                    <li>Vários recursos - APIs, Bibliotecas, etc</li>
+                    <li>Similar a C/C++</li>
+                    <li>Desalocação de memória automática</li>
+                </ul>
+            </section>
+
+            <section>
+                <h1>Sintaxe Básica</h1>
+                <h3>Tipos de dados primários</h3>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Dados lógicos
+                    ```java
+                    class TiposDeDadosPrimarios {
+                        // Método principal que aonde o programa será executado
+                        public static void main(String[] args) {
+                            boolean ehFalso = false;
+                            boolean ehVerdadeiro = true;
+                        }
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Dados numéricos
+                    ```java
+                    class TiposDeDadosPrimarios2 {
+                        // Método principal que aonde o programa será executado
+                        public static void main(String[] args) {
+
+                            // Tipos de dados numéricos
+                            // 1. Byte (8 bits)
+                            // Valor minimo: -128
+                            // Valor máximo: 127
+
+                            byte valorMinimo = -128;
+                            byte valorMaximo = 127;
+
+                            // 2. Short (16 bits)
+                            // Valor minimo: -32.768
+                            // Valor máximo: 32.767
+
+                            short valorMinimo = -32768;
+                            short valorMaximo = 32767;
+
+                            // 3. Int (32 bits)
+                            // Valor minimo: -2.147.483.648
+                            // Valor máximo: 2.147.483.647
+
+                            int valorMinimo = -2147483648;
+                            int valorMinimo = 2147483647;
+
+                            // 4. Long (64 bits)
+                            // Valor minimo: -9.223.372.036.854.775.808
+                            // Valor máximo: 9.223.372.036.854.775.807
+
+                            long valorMinimo = -9223372036854775808L;   // 'L': Representação literal de long
+                            long valorMaximo = 9.223372036854775807;
+
+
+                        }
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Dados numéricos reais
+                    ```java
+                    class TiposDeDadosPrimarios2 {
+                        // Método principal que aonde o programa será executado
+                        public static void main(String[] args) {
+                            // Tipos de dados numéricos reais
+
+                            // 1. Float (32 bits)
+
+                            float valorPi = 3.14159265359;
+                            float valorNegativo = -170.348;
+                            float outroValor = 32.7F;   // 'F': Representação literal de float
+
+                            // 2. Double (64 bits)
+
+                            double outroPi = 3.14159265359;
+                            double valorNegativo = -88.87;
+                            double maisNumero = 124D;   // 'D': Representação literal de double
+                        }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Dados de caracteres
+                    ```java
+                    class TiposDeDadosPrimarios2 {
+                        // Método principal que aonde o programa será executado
+                        public static void main(String[] args) {
+                            // Tipos de dados numéricos reais
+
+                            // 1. Char (16 bits)
+                            // Representa caracteres no formato UTF-16
+                            // Faixa de valores:
+                            // - 0 a 65535
+                            // - '\u0000' a '\uffff'
+
+                            char letraB = 'b';
+                            char letraNoFormatoUnicode = '\u0041';
+                        }
+                    ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Representações Literais</h2>
+                <p>Representa dados no código fonte, ou seja, os dados dos tipos primitivos</p>
+                <ul>
+                    <li>Lógico: <strong>true</strong> ou <strong>false</strong></li>
+                    <li>
+                        Inteiros:
+                        <ul>
+                            <li>Decimal: <strong>0 1 2 3 ...</strong></li>
+                            <li>Decimal (long): Precede pela letra <strong>L</strong></li>
+                            <li>Octal: Precede por zero <strong>(ex.: 02, 07)</strong></li>
+                            <li>Hexadecimal: Precede por <strong>0x</strong> (ex.: 0xA)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        Flutuantes:
+                        <ul>
+                            <li>Tipo float: Letra <strong>F</strong></li>
+                            <li>Tipo double: Letra <strong>D</strong></li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Dados de caracteres
+                    É um processo para atribuir valor de um tipo de variável para outro tipo de variável.
+                    ```java
+                    float a  = (float) 5.0;  //Conversão do double 5.0 para float.
+
+                    int b = (int) 5.1987;   //Conversão de double para int.
+
+                    float c = 100;   // De int para float sendo implícito, não precisa de casting.
+
+                    int d = 'd';     // De char para int é implícito, não precisa de casting.
+                    ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Casting possíveis</h2>
+                <center><img src="img/casting_possiveis.png" alt=""></center>
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Estrutura condicional
+                    ##### Instrução if e else
+                    ```java
+                    int myAge = 12;
+                    if (myAge < 18) {
+                        System.out.println("Menos de idade");
+                    } else {
+                        System.out.println("Maior de idade");
+                    }
+                    ```
+
+                    ```java
+                    // Sendo uma linha nos blocos if e else, chave é opcional
+                    int myAge = 12;
+                    if (myAge < 18)
+                        System.out.println("Menos de idade");
+                    else
+                        System.out.println("Maior de idade");
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Estrutura condicional
+                    ##### Instrução if e else
+
+                    ```java
+                    // Usando ifs aninhados
+                    int myAge = 18;
+                    if (myAge < 10)
+                        System.out.println("Criança");
+                    else if (myAge > 10 && myAge <= 13)
+                        System.out.println("Pré-adolescente");
+                    else if (myAge > 13 && myAge <= 17)
+                        System.out.println("Adolescente");
+                    else if (myAge > 17 && myAge <= 23)
+                        System.out.println("Jovem");
+                    else
+                        System.out.println("Adulto");
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                    ## Estrutura condicional
+                    ##### Instrução switch
+
+                    ```java
+                    switch ( <condição> )
+                    {
+                       case <valor1>: <bloco de programa1 a ser executado>
+                       break;
+
+                       case <valor2>: <bloco de programa2 a ser executado>
+                       break;
+
+                       ...
+                       case <valorn>: <bloco de programan a ser executado>
+                       break;
+
+                       default: <bloco de programa a ser executado caso nenhuma das condições acima seja adequada>
+                       break;
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Estrutura condicional
+                    ##### Instrução switch
+                    ```java
+                    switch (dia_da_semana) {
+                        case 1: System.out.println("Domingo");
+                        break;
+
+                        case 2: System.out.println("Segunda-feira");
+                        break;
+
+                        case 3: System.out.println("Terça-feira");
+                        break;
+
+                        case 4: System.out.println("Quarta-feira");
+                        break;
+
+                        case 5: System.out.println("Quinta-feira");
+                        break;
+
+                        case 6: System.out.println("Sexta-feira");
+                        break;
+
+                        case 7: System.out.println("Sábado");
+                        break;
+
+                        default: System.out.println("O dia da semana está errado.");
+                        break;
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Estrutura de repetição
+                    ##### Instrução while
+                    ```java
+                    int age = 15;
+                    while (age < 18) {
+                      System.out.println(age);
+                      age = age + 1;
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Estrutura de repetição
+                    ##### Instrução for
+                    ```java
+                    for (inicializacao; condicao; incremento) {
+                      codigo;
+                    }
+                    ```
+                    ```java
+                    for (int i = 0; i < 10; i = i + 1) {
+                      System.out.println("Hi!");
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Operadores de atribuição</h2>
+                <center><img src="img/operadores_atribuicao.png" alt=""></center>
+            </section>
+
+            <section>
+                <h2>Operadores de incremento e decremento</h2>
+                <center><img src="img/incremento_decremento.png" alt=""></center>
+            </section>
+
+            <section>
+                <h2>Operadores lógicos</h2>
+                <center><img src="img/operadores_logicos.png" alt=""></center>
+            </section>
+
+            <section>
+                <h2>Operadores lógicos</h2>
+                <p>Segue duas diferenças em relação ao operador <strong>AND</strong> e <strong>OR</strong>:</p>
+                <ul>
+                    <li>Com <strong>&&</strong> se <i>a</i> for falso, <i>b</i> não é avaliado.</li>
+                    <li>Com <strong>||</strong> se <i>a</i> for verdadeiro, <i>b</i> não é avaliado.</li>
+                </ul>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Arrays
+                    ```java
+                    // Declarando um array de inteiros
+                    int[] arrayA = new int[5];
+
+                    // Outra forma
+                    int[] b;
+                    b = new int[8];
+
+                    // Inicializando valores no array
+                    int[] valoresIniciais = {2, 4, 6, 8, 10, 12, 14, 16};
+
+                    // Seta valor no elemento especifico
+                    arrayA[0] = 10;
+                    arrayA[1] = 12;
+
+                    // Imprimindo valor de um item do array
+                    System.out.println(arrayA[0]);
+                    System.out.println(arrayA[1]);
+                    ```
+                </script>
+            </section>
+
+            <section>
+                <h1>Orientação a Objetos</h1>
+                <h3>Aproximando mundo real do virtual</h3>
+            </section>
+
+            <section>
+                <h2>Orientação a Objetos</h2>
+                <p>É um paradigma de programação baseado na composição e interação entre unidades chamados objetos.</p>
+                <p>Esse modelo visa os seguintes pontos:</p>
+                <ul>
+                    <li>Organização</li>
+                    <li>Desempenho</li>
+                    <li>Sustentabilidade</li>
+                    <li>Reutilização</li>
+                </ul>
+            </section>
+
+            <section>
+                <p>Ela visa um pensamento o mais próximo possível da vida real. Ao programar orientado a objetos não teremos apenas funções que são chamadas uma seguida da outra, mas sim <strong>objetos</strong> que possuem <strong>estado</strong> e <strong>comportamento</strong>.</p>
+            </section>
+
+            <section>
+                <h1>Orientação a Objetos</h1>
+                <h3>Classes e Objetos</h3>
+            </section>
+
+            <section>
+                <p>Uma classe é uma estrutura que abstrai um conjunto de objetos com características similares. Uma classe define o comportamento de seus objetos - através de métodos - e os estados possíveis destes objetos - através de atributos.</p>
+                <p>Em outras palavras, uma classe descreve os serviços oferecidos por seus objetos e quais informações eles podem armazenar.</p>
+            </section>
+
+            <section>
+                <p>Um objeto, na vida real, é qualquer coisa que podemos dar um nome. Aqui é uma instância (ou seja, um exemplar) de uma classe.</p>
+                <p>Um objeto é capaz de armazenar estados através de seus atributos e reagir a mensagens enviadas a ele, assim como se relacionar e enviar mensagens a outros objetos.</p>
+                <center><img src="img/oo_concept.gif" alt=""></center>
+            </section>
+
+            <section>
+                <h2>Exemplo de objeto</h2>
+                <center><img src="img/concepts-bicycleObject.gif" alt=""></center>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                    ## Exemplo de classe Java
+                    ```java
+                    class Bicycle {
+
+                        int cadence = 0;
+                        int speed = 0;
+                        int gear = 1;
+
+                        void changeCadence(int newValue) {
+                             cadence = newValue;
+                        }
+
+                        void changeGear(int newValue) {
+                             gear = newValue;
+                        }
+
+                        void speedUp(int increment) {
+                             speed = speed + increment;
+                        }
+
+                        void applyBrakes(int decrement) {
+                             speed = speed - decrement;
+                        }
+
+                        void printStates() {
+                             System.out.println("cadence:" +
+                                 cadence + " speed:" +
+                                 speed + " gear:" + gear);
+                        }
+                    }
+                    ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Links sobre Workshop</h2>
+                <ul>
+                    <li><a href="exercicios.html">Exercícios - Dia 01</a></li>
+                    <li><a href="referencia.html">Material de Referência</a></li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>É isso! Até o próximo dia.</h2>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: 'solarized', // available themes are in /css/theme
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+            src: 'lib/js/classList.js',
+            condition: function() {
+                return !document.body.classList;
+            }
+        }, {
+            src: 'plugin/markdown/marked.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/markdown/markdown.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+                hljs.initHighlightingOnLoad();
+            }
+        }, {
+            src: 'plugin/zoom-js/zoom.js',
+            async: true,
+            condition: function() {
+                return !!document.body.classList;
+            }
+        }, {
+            src: 'plugin/notes/notes.js',
+            async: true,
+            condition: function() {
+                return !!document.body.classList;
+            }
+        }]
+    });
+    </script>
+
+</body>
+
+</html>

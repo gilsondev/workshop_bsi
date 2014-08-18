@@ -1,0 +1,1 @@
+ - Considerar explicação do upcasting: http://www.javacomcafe.com/2010/07/conversao-de-tipos-ou-casting-java.html
