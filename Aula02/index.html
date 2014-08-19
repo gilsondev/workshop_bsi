@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Workshop: Java e Orientação a Objetos | Dia 01</title>
+
+    <meta name="description" content="Slide do primeiro dia do workshop Java e Orientação a Objetos">
+    <meta name="author" content="Gilson Filho">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/github.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    if (window.location.search.match(/print-pdf/gi)) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <h1>Java e Orientação a Objetos</h1>
+                <h3>Dia 02</h3>
+                <p>
+                    <small>
+                        Gilson Filho:
+                        <a href="http://github.com/gilsondev">Github</a> / <a href="http://twitter.com/gilsonfilho">@gilsonfilho</a>
+                    </small>
+                </p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Criando uma classe java
+                ```java
+                class Conta {
+                    int numero;
+                    String dono;
+                    double saldo;
+                    double limite;
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Criando objeto
+                ```java
+                class ContaMain {
+                    public static void main(String[] args) {
+                        new Conta();
+                    }
+                }
+                ```
+                ```java
+                class ContaMain {
+                    public static void main(String[] args) {
+                        Conta conta;
+                        conta = new Conta();
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Criando objeto
+                #### Com objeto criado, é só inserir os dados
+                ```java
+                class ContaMain {
+                    public static void main(String[] args) {
+                        Conta conta = new Conta();
+                        conta.numero = 3125;
+                        conta.dono = "Carlos Santos";
+                        conta.saldo = 400.0;
+
+                        System.out.println("Saldo Atual: " + conta.saldo);
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Métodos
+                #### Definindo comportamentos para a classe
+                ```java
+                class Conta {
+                    int numero;
+                    String dono;
+                    double saldo;
+                    double limite;
+
+                    void saca(double quantidade) {
+                        double novoSaldo = this.saldo - quantidade;
+                        this.saldo = novoSaldo;
+                    }
+
+                    void deposita(double quantidade) {
+                        this.saldo += quantidade;
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Métodos
+                #### Definindo comportamentos para a classe
+                ```java
+                class TestaAlgunsMetodos {
+                   public static void main(String[] args) {
+                     // criando a conta
+                     Conta minhaConta;
+                     minhaConta = new Conta();
+
+                     // alterando os valores de minhaConta
+                     minhaConta.dono = "Duke";
+                     minhaConta.saldo = 1000;
+
+                     // saca 200 reais
+                     minhaConta.saca(200);
+
+                     // deposita 500 reais
+                     minhaConta.deposita(500);
+                     System.out.println(minhaConta.saldo);
+                   }
+                 }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Métodos com retorno
+                ```java
+                class Conta {
+                   // ... outros métodos e atributos ...
+
+                   boolean saca(double valor) {
+                     if (this.saldo < valor) {
+                       return false;
+                     }
+                     else {
+                       this.saldo = this.saldo - valor;
+                       return true;
+                     }
+                   }
+                 }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Métodos com retorno
+                #### Com o retorno você pode validar o saque
+                ```java
+                minhaConta.saldo = 1000;
+                boolean consegui = minhaConta.saca(2000);
+                if (consegui) {
+                  System.out.println("Consegui sacar");
+                } else {
+                  System.out.println("Não consegui sacar");
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Referência de objetos
+                As variáveis não guardam os objetos, mas armazenam a referência delas.
+                ```java
+                public static void main(String args[]) {
+                   Conta c1;
+                   c1 = new Conta();
+
+                   Conta c2;
+                   c2 = new Conta();
+                 }
+                ```
+                </script>
+            </section>
+
+            <section><img src="img/referencia_01.png" alt=""></section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Referência de objetos
+                Variável _c2_ apontando para o objeto da variável _c1_
+                ```java
+                class TestaReferencias {
+                   public static void main(String args[]) {
+                     Conta c1 = new Conta();
+                     c1.deposita(100);
+
+                     Conta c2 = c1;  // linha importante!
+                     c2.deposita(200);
+
+                     System.out.println(c1.saldo);
+                     System.out.println(c2.saldo);
+                   }
+                 }
+                ```
+                </script>
+            </section>
+
+            <section><img src="img/referencia_02.png" alt=""></section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Referência de objetos
+                Comparando dois objetos
+                ```java
+                public static void main(String args[]) {
+                   Conta c1 = new Conta();
+                   c1.dono = "Duke";
+                   c1.saldo = 227;
+
+                   Conta c2 = new Conta();
+                   c2.dono = "Duke";
+                   c2.saldo = 227;
+
+                   if (c1 == c2) {  // Falso, referências diferentes
+                     System.out.println("Contas iguais");
+                   }
+                 }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Mais de atributos
+                Os atributos de uma classe recebem valores default quando
+                não forem atribuídas.
+                ```java
+                 class Conta {
+                   int numero;              // Default: 0
+                   String dono;             // Default: null
+                   String cpf;              // Default: null
+                   double saldo = 1000;     // Default: 0
+                   double limite = 1000;    // Default: 0
+                 }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Mais de atributos
+                Você pode customizar os valores padrão
+                ```java
+                 class Conta {
+                   int numero = 1234;
+                   String dono = "Duke";
+                   String cpf = "123.456.789-10";
+                   double saldo = 1000;
+                   double limite = 1000;
+                 }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Mais de atributos
+                Atributos pode ser referência a outras classes
+                ```java
+                class Cliente {
+                   String nome;
+                   String sobrenome;
+                   String cpf;
+                 }
+                ```
+                ```java
+                class Conta {
+                   int numero;
+                   double saldo;
+                   double limite;
+                   Cliente titular;     // Default: null
+                   // ..
+                 }
+                ```
+                ```java
+                 class Teste {
+                   public static void main(String[] args) {
+                     Conta minhaConta = new Conta();
+                     Cliente c = new Cliente();
+                     minhaConta.titular = c;
+                     // ...
+                   }
+                 }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Observação: Se seu atributo for uma classe, precisa inicializá-la.
+                ```java
+                class Teste {
+                  public static void main(String[] args) {
+                    Conta minhaConta = new Conta();
+
+                    minhaConta.titular.nome = "Manoel";
+                    // Não criou o objeto e o associou ao atributo titular
+                    // que por padrão é null, emite um erro do tipo
+                    // NullPointerException
+                  }
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Exercícios</h2>
+                <p>Objetivo desse exercício é para fixar o que aprenderam hoje</p>
+                <center><a href="http://bit.ly/1tbUOb8">Criando modelo <i>Funcionario</i></a></center>
+            </section>
+
+            <section>
+                <h2>É isso! Até o próximo dia.</h2>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: 'solarized', // available themes are in /css/theme
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        multiplex: {
+            // Example values. To generate your own, see the socket.io server instructions.
+            secret: '14083659196507749837', // null so the clients do not have control of the master presentation
+            id: '553d8782d3bbee4f', // id, obtained from socket.io server
+            url: 'revealjs.jit.su:80' // Location of your socket.io server
+        },
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+            src: 'lib/js/classList.js',
+            condition: function() {
+                return !document.body.classList;
+            }
+        }, {
+            src: 'plugin/markdown/marked.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/markdown/markdown.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+                hljs.initHighlightingOnLoad();
+            }
+        }, {
+            src: 'plugin/zoom-js/zoom.js',
+            async: true,
+            condition: function() {
+                return !!document.body.classList;
+            }
+        }, {
+            src: 'plugin/notes/notes.js',
+            async: true,
+            condition: function() {
+                return !!document.body.classList;
+            }
+        }, {
+            src: 'http://revealjs.jit.su/socket.io/socket.io.js',
+            async: true
+        }, {
+            src: 'plugin/multiplex/client.js',
+            async: true
+        }, {
+            src: 'plugin/multiplex/master.js',
+            async: true
+        }, ]
+    });
+    </script>
+
+</body>
+
+</html>
