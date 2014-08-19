@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0063)file:///var/folders/4_/kfl847yx36z91rb3jhqyl5740000gn/T/14.html -->
+<!-- saved from url=(0063)file:///var/folders/4_/kfl847yx36z91rb3jhqyl5740000gn/T/16.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><style>body
 {
   font-size:15px;
@@ -750,91 +750,34 @@ body .task-list{
 .type-csharp .highlight .sc{
   color:#A31515
 }
-</style><title>untitled</title></head><body><h1>
-<a name="user-content-dia-01---exerc%C3%ADcios" class="anchor" href="file:///var/folders/4_/kfl847yx36z91rb3jhqyl5740000gn/T/14.html#dia-01---exerc%C3%ADcios" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dia 01 - Exercícios</h1>
-
-<h2>
-<a name="user-content-considera%C3%A7%C3%B5es" class="anchor" href="file:///var/folders/4_/kfl847yx36z91rb3jhqyl5740000gn/T/14.html#considera%C3%A7%C3%B5es" aria-hidden="true"><span class="octicon octicon-link"></span></a>Considerações</h2>
-
-<p>As questões abaixo envolve o que foi ensinado nesse dia. Não se preocupem se as questões são simples, elas servem somente para praticar e fixar o que aprenderam. Praticamente todas as questões exigem entrada de dados, e para isso podem usar esses exemplos:</p>
-
-<div class="highlight highlight-java"><pre><span class="c1">// Preparando objeto para entrada de dados</span>
-<span class="n">Scanner</span> <span class="n">entradaDados</span> <span class="o">=</span> <span class="k">new</span> <span class="nf">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
-
-<span class="c1">// Para receber entrada do tipo String</span>
-<span class="n">entradaDados</span><span class="o">.</span><span class="na">nextLine</span><span class="o">();</span>
-
-<span class="c1">// Para receber entrada do tipo Integer, Long, Double e Float respectivamente</span>
-<span class="n">entradaDados</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
-<span class="n">entradaDados</span><span class="o">.</span><span class="na">nextLong</span><span class="o">();</span>
-<span class="n">entradaDados</span><span class="o">.</span><span class="na">nextDouble</span><span class="o">();</span>
-<span class="n">entradaDados</span><span class="o">.</span><span class="na">nextFloat</span><span class="o">();</span>
-</pre></div>
-
-<p>No decorrer do curso irei explicar a criação de objetos e classes Java. Para mais informações sobre a classe Scanner:</p>
-
-<ul>
-<li>Como funciona a classe Scanner do Java: <a href="http://www.devmedia.com.br/como-funciona-a-classe-scanner-do-java/28448">http://www.devmedia.com.br/como-funciona-a-classe-scanner-do-java/28448</a>
-</li>
-<li>API Scanner: <a href="http://docs.oracle.com/javase/6/docs/api/java/util/Scanner.html">http://docs.oracle.com/javase/6/docs/api/java/util/Scanner.html</a>
-</li>
-</ul><h2>
-<a name="user-content-quest%C3%B5es" class="anchor" href="file:///var/folders/4_/kfl847yx36z91rb3jhqyl5740000gn/T/14.html#quest%C3%B5es" aria-hidden="true"><span class="octicon octicon-link"></span></a>Questões</h2>
+</style><title>exercicios</title></head><body><h1>
+<a name="user-content-dia-02---exerc%C3%ADcios" class="anchor" href="file:///var/folders/4_/kfl847yx36z91rb3jhqyl5740000gn/T/16.html#dia-02---exerc%C3%ADcios" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dia 02 - Exercícios</h1>
 
 <ol>
-<li><p>Escreva um programa em Java que recebe 3 números, calcule e mostre a soma.</p></li>
-<li><p>Escreva um programa em Java que lê três números inteiros, calcula e imprime a média aritmética desses números.</p></li>
-<li><p>Escreva um programa em Java que leia dois números inteiros e determine qual é o menor.</p></li>
 <li>
-<p>Escreva um programa para ler 3 notas de um aluno e informar se o alunos está aprovado, reprovado ou se deverá fazer a prova final.</p>
+<p>Uma empresa solicita o desenvolvimento de um sistema para cadastro de funcionários. Essa empresa possui os seguintes cargos: <em>Gerente</em>, <em>SubGerente</em>, <em>Coordenador</em> e <em>Atendente</em>. Todos os funcionários possui os seguintes dados:</p>
 
-<pre><code>- O aluno será Aprovado a média de suas notas for &gt; 6
-- O aluno será Reprovado se a média de suas notas for &lt; 4
-- O aluno deverá fazer a prova se a média de suas notas for &gt;= 4 e &lt; 6 
-- Média das notas: (Nota1 + Nota2 + Nota3) / 3
-</code></pre>
+<ul>
+<li>Nome;</li>
+<li>CPF;</li>
+<li>Idade;</li>
+<li>Salário;</li>
+</ul>
 </li>
-<li><p>Crie um programa que recebe uma lista de números inteiros positivos decimais (0-9) *, o programa termina quando inserido o (– 1), e imprime para cada número n a sequência de 0s e 1s que formam os bits (do mais significativo para o menos significativo) deste número representado em binário, a sequência de bits deve ser apresentada na mesma linha e concluída por “\n”. Use o método print para imprimir cada um dos bits, e o método println para pular de linha.</p></li>
-<li>
-<p>Escreva um programa para ler o salário de uma pessoa e imprimir o
-desconto do INSS segundo a tabela abaixo:</p>
+</ol><p>Existem algumas informações que diferem de cada cargo. Os gerentes tem a opção de receber benefícios mensais no valor de R$ 300,00 por mês, os sub-gerentes no valor de R$ 100,00. Os atendentes recebem uma bonificação a partir de uma porcentagem no valor total de vendas de 10%. Por exemplo, se um atendente vendeu R$ 100,00 ele recebe R$ 10,00 de bonificação.</p>
 
-<pre><code>- menor ou igual a R$ 600,00 - Isento
-- maior do que R$ 600,00 e menor ou igual a R$ 1.200,00 - 20%
-- maior do que R$ 1.200,00 e menor ou igual a R$ 2.000,00 - 25%
-- maior do que R$ 2.000,00 - 30%
-</code></pre>
-</li>
-<li>
-<p>Escreva um programa para calcular a quantidade de litros de combustível necessária para se fazer uma viagem, sabendo-se que o carro faz 12 Km com um litro. Deverão ser fornecidos o tempo gasto na viagem e a velocidade média. Utilizar as seguintes fórmulas:</p>
+<p>O sistema deve dar as seguintes opções na tela:</p>
 
-<pre><code>distância = tempo x velocidade
-litros usados = distância / 12
-</code></pre>
-</li>
-<li>
-<p>Escreva um programa para imprimir o menu abaixo:</p>
+<pre><code>1. Inserir Funcionário;
+2. Editar funcionário;
+3. Remover funcionário;
+2. Registrar bonificação.
 
-<pre><code>1 - Solteiro(a)
-2 - Desquitado(a)
-3 - Casado(a)
-4 - Divorciado(a)
-5 - Viúvo(a)
+Digite a opção desejada:
 </code></pre>
 
-<p>O usuário deverá selecionar uma das opções do menu e este deverá escrever
-o estado civil da pessoa. Emitir mensagem de erro caso seja escolhida uma
-opção inexistente.</p>
-</li>
-<li>
-<p>Escreva um programa para ler um conjunto de funcionários de uma empresa
-com número, idade, número de horas trabalhadas e salário hora. O programa deverá imprimir:</p>
+<p>Dicas:</p>
 
-<pre><code>- O número, idade salário hora e horas trabalhadas para cada um
-- A quantidade de homens
-- A média salarial de todas as mulheres
-- A média salarial das mulheres com menos de 30 anos
-- A média salarial de todos os empregados
-</code></pre>
-</li>
-</ol><p>O número da última pessoa (que não deve ser considerada) deve ser 999.</p></body></html>
+<pre><code>1. Use arrays para armazenar e acessar os funcionários cadastrados;
+2. Use todos os princípios de Orientação a Objetos ministrados na aula.
+</code></pre></body></html>

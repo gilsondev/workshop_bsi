@@ -4,9 +4,9 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Workshop: Java e Orientação a Objetos | Dia 01</title>
+    <title>Workshop: Java e Orientação a Objetos | Dia 02</title>
 
-    <meta name="description" content="Slide do primeiro dia do workshop Java e Orientação a Objetos">
+    <meta name="description" content="Slide do segundo dia do workshop Java e Orientação a Objetos">
     <meta name="author" content="Gilson Filho">
 
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -344,10 +344,604 @@
                 </script>
             </section>
 
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Construtores
+                Quando cria o objeto usando a palavra-chave _new_, ele invoca o construtor
+                da classe que é um bloco declarado com o mesmo nome.
+                ```java
+                class Conta {
+                  int numero;
+                  Cliente titular;
+                  double saldo;
+                  double limite;
+
+                  // construtor
+                  Conta() {
+                    System.out.println("Construindo uma conta.");
+                  }
+
+                  // ..
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Construtores
+                Mesmo não especificando um construtor, o Java define um construtor
+                default.
+                ```java
+                class Conta {
+                  int numero;
+                  Cliente titular;
+                  double saldo;
+                  double limite;
+
+                  // Não existe um construtor, mas existe de forma implícita.
+                  // Sua estrutura é mais ou menos essa:
+                  // Conta() {
+                  //
+                  // }
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Palavra-chave <i>this</i></h2>
+                <p>Ele é usado para fazer uma auto-referência, ou seja, ele representa o próprio objeto instanciado</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ```java
+                class Conta {
+                  int numero;
+                  Cliente titular;
+                  double saldo;
+                  double limite;
+
+                  void mostraLimite() {
+                    // Retorna o valor do saldo do objeto manipulado
+                    return this.saldo;
+                  }
+                }
+                ```
+                ```java
+                public class ContaTeste {
+                    public static void main(String[] args) {
+                        Conta conta = new Conta();
+                        conta.limite = 200;
+
+                        // Imprime o valor '200'
+                        System.out.println("Limite da conta: " + conta.mostraLimite());
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Como organizar todas essas classes?</h2>
+            </section>
+
+            <section>
+                <h2>Pacotes</h2>
+                <p>Simplesmente estruturas de diretórios aonde pode armazenar as classes criadas</p>
+                <center><img src="img/pacotes.png" alt=""></center>
+            </section>
+
+            <section>
+                <h2>Pacotes</h2>
+                <p>No computador, essa estrutura fica dessa forma:</p>
+                <center><img src="img/estrutura_pacotes.png" alt=""></center>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Pacotes
+                No código Java é importante definir em qual pacote ele pertence.
+                ```java
+                package com.bsitecnologia.classes;
+
+                class OlaMundo {
+                    // ...
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Modificadores de Acesso</h2>
+            </section>
+
+            <section>
+                <h2>Modificadores de acesso</h2>
+                <p>São definições de visibilidade a ser usado nas classes, atributos e métodos</p>
+                <ul>
+                    <li>default</li>
+                    <li>public</li>
+                    <li>private</li>
+                    <li>final</li>
+                    <li>static</li>
+                    <li><strong>protected</strong></li>
+                    <li><strong>abstract</strong></li>
+                </ul>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                **Defaut**: Modificador padrão. Acessível somente por classes do mesmo pacote.
+                Da mesma forma são os métodos e atributos.
+                ```java
+                package com.bsitecnologia.classes;
+
+                class Tampa {
+                    void inserirTampa() {// código aqui}
+                }
+                ```
+                ```java
+                package com.bsitecnologia.classes;
+
+                class Caneta {
+                    // Classe acessível porque está no mesmo pacote que Caneta
+                    Tampa tampa;
+
+                    void sairTinta() {
+                        // ...
+                    }
+
+                    void colocarTampa() {
+                        tampa = new Tampa();
+                        tampa.inserirTampa();
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                **Public**: Declaração com modificador public o torna visível em todo
+                lugar do projeto. Atributos e métodos ficam acessíveis para uso.
+                ```java
+                package com.bsitecnologia.classes;
+
+                public class CanetaPublic {
+                    public void sairTinta() {
+                        // ...
+                    }
+                }
+                ```
+                ```java
+                package com.bsitecnologia.outropacote;
+
+                // Estando em outro pacote, a classe é importada para ser usada.
+                import com.bsitecnologia.classes.CanetaPublic;
+
+                public class Papel {
+                    CanetaPublic caneta = new CanetaPublic();
+
+                    void escrever() {
+                        caneta.sairTinta();
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                **Private**: Modificador que define atributos e métodos acessíveis somente a sua classe.
+                ```java
+                package com.bsitecnologia.classes;
+
+                class Tinta {
+                    private String cor = "azul";
+
+                    public inserirNaCaneta() {
+                        System.out.println("Inserido na caneta");
+                        System.out.println("Cor da Tinta: " + cor);
+                    }
+                }
+                ```
+                ```java
+                package com.bsitecnologia.classes;
+
+                public class Caneta {
+                    Tinta tinta = new Tinta();
+
+                    void sairTinta() {
+                        tinta.inserirNaCaneta();
+
+                        // Erro!: O atributo é privado. Somente a classe Tinta pode acessar
+                        System.out.println("Cor usado: " + tinta.cor);
+
+                        System.out.println("Saindo tinta");
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Atenção!</h2>
+                <ol>
+                    <li>Classes não usam o modificador <i>private</i></li>
+                    <li>Atributos e métodos não são visíveis pelas classes herdadas</li>
+                </ol>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                **Final**: Modificador que pode usar em classes, métodos e atributos. Nos atributos
+                faz com que o valor da variável seja inalterado.
+                ```java
+                class Tampa {
+                    // Seguindo essas características acaba tornando uma contante
+                    // O nome da variavel em caixa alta é uma convenção.
+                    private final String TIPO_MATERIAL = "plastico";
+
+                    // ...
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                **Static**: Modificador que pode usar em métodos e atributos.
+                Nos atributos faz com que todas as instâncias criadas tenham acesso ao valor da variável.
+
+                Por padrão o atributo é de cada objeto.
+                ```java
+                class Conta {
+                  static int totalDeContas;
+                  //...
+
+                  Conta() {
+                    Conta.totalDeContas = Conta.totalDeContas + 1;
+                  }
+                }
+                ```
+                ```java
+                public class ContaTeste {
+                    publics static void main(String[] args) {
+                        // Criando contas
+                        Conta conta1 = new Conta();
+                        Conta conta2 = new Conta();
+                        Conta conta3 = new Conta();
+                        Conta conta4 = new Conta();
+
+                        System.out.println("Total de Contas: " + Conta.totalDeContas);
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                **Static**: Inserindo nos métodos, podem ser acessados sem criar um objeto
+                ```java
+                class Conta {
+                    // ...
+                    static boolean metodoEstatico() {
+                        System.out.println("Sou metodo estatico");
+                    }
+                }
+                ```
+                ```java
+                public class ContaTeste {
+                    publics static void main(String[] args) {
+                        Conta.metodoEstatico();
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Herança</h2>
+                <p>Criando classes a partir de outras classes</p>
+            </section>
+
+            <section>
+                <h2>Herança</h2>
+                <p>Esse princípio serve para reutilização de código, sendo que uma classe herda os comportamentos e atributos de outra classe.</p>
+                <ul>
+                    <li>Nova classe: Subclasse (Classe filha)</li>
+                    <li>Classe antiga: Superclasse (Classe pai)</li>
+                </ul>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                As classes possuem estados semelhantes:
+                ```java
+                class Funcionario {
+                  String nome;
+                  String cpf;
+                  double salario;
+                  // métodos devem vir aqui
+                }
+                ```
+                ```java
+                class Gerente {
+                  String nome;
+                  String cpf;
+                  double salario;
+                  int senha;
+                  int numeroDeFuncionariosGerenciados;
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Usando herança para reaproveitar código, usando a palavra-chave _extends_:
+                ```java
+                /*
+                 * A classe herdou os estados e comportamentos
+                 * de funcionario como: nome, cpf e salario.
+                 */
+                class Gerente extends Funcionario {
+                  int senha;
+                  int numeroDeFuncionariosGerenciados;
+                }
+                ```
+                ```java
+                public class Teste {
+                    public static void main(String[] args) {
+                        Funcionario funcionario = new Funcionario();
+                        Gerente gerente = new Gerente();
+
+                        // ...
+
+                        System.out.println("Nome do Funcionario: " +  funcionario.nome);
+
+                        System.out.println("Nome do Gerente:" + gerente.nome);
+                        System.out.println("CPF do Gerente:" +  gerente.cpf);
+                        System.out.println("Salario do Gerente:" + gerente.salario);
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Usando modificador <i>protected</i></h2>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Protected
+                Usando modificador nos atributos e métodos, somente as classes herdadas ou do mesmo pacote poderão visualizá-las.
+                ```java
+                package com.bsitecnologia.heranca;
+
+                class Gerente extends Funcionario {
+                  int senha;
+                  int numeroDeFuncionariosGerenciados;
+                  protected double beneficio = 200.0;
+
+                  protected void adicionarBeneficio(double bonus) {
+                    this.beneficio += bonus;
+                  }
+                }
+                ```
+                ```java
+                package com.bsitecnologia.heranca;
+
+                class SubGerente extends Gerente{
+                    String outras_atribuicoes;
+
+                    // Ele também herda o atributo beneficio e o método adicionarBeneficio
+
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Protected
+                Quando estão no mesmo pacote:
+                ```java
+                package com.bsitecnologia.heranca;
+
+                class Gerente extends Funcionario {
+                  int senha;
+                  int numeroDeFuncionariosGerenciados;
+                  protected double beneficio = 200.0;
+
+                  protected void adicionarBeneficio(double bonus) {
+                    this.beneficio += bonus;
+                  }
+                }
+                ```
+                ```java
+                package com.bsitecnologia.heranca;
+
+                class RH {
+                    Gerente gerente = new Gerente();
+
+                    public void efetivarBeneficio() {
+                        gerente.adicionarBeneficio(100.0);
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Posso acessar métodos e atributos da classe pai?</h2>
+                <p>Sim, usando a palavra-chave <i>super</i></p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ```java
+                package com.bsitecnologia.heranca;
+
+                class Gerente extends Funcionario {
+                  int senha;
+                  int numeroDeFuncionariosGerenciados;
+                  protected double beneficio = 200.0;
+
+                  Gerente() {
+                    this.nome = "Sr. " + super.nome;
+                  }
+
+                  public void teste() {
+                    return super.metodoPai();
+                  }
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Polimorfismo</h2>
+                <p>Usando elementos de formas diferentes</p>
+            </section>
+
+            <section>
+                <h2>Polimorfismo</h2>
+                <p>Pertencente da Orientação a Objetos, permite usar um elemento de formas diferentes</p>
+                <p>Existem dois tipos:</p>
+                <ol>
+                    <li>Sobrescrita</li>
+                    <li>Sobrecarga</li>
+                </ol>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Sobrescrita
+                Quanto um método sobrescreve o método herdado da superclasse
+                ```java
+                package com.bsitecnologia.heranca;
+
+                class Gerente extends Funcionario {
+                  int senha;
+                  int numeroDeFuncionariosGerenciados;
+                  protected double beneficio = 200.0;
+
+                  protected void adicionarBeneficio(double bonus) {
+                    this.beneficio += bonus;
+                  }
+                }
+                ```
+                ```java
+                package com.bsitecnologia.heranca;
+                class SubGerente extends Gerente {
+
+                  protected void adicionarBeneficio(double bonus) {
+                    this.beneficio += (bonus * 0.10);
+                  }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Sobrecarga
+                Quanto implementa um método de cabeçalho ou assinatura parecida com
+                o método herdado (na quantidade e tipo dos argumentos)
+                ```java
+                class Gerente extends Funcionario {
+                  // atributos
+
+                  protected void adicionarBeneficio(double bonus) {
+                    this.beneficio += bonus;
+                  }
+                }
+                ```
+                ```java
+                class SubGerente extends Gerente {
+
+                  protected void adicionarBeneficio(double bonus) {
+                    this.beneficio += (bonus * 0.10);
+                  }
+
+                  protected void adicionarBeneficio(double bonus, double taxa) {
+                    this.beneficio += (bonus * taxa);
+                  }
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+                <h2>Observações sobre a Sobrecarga</h2>
+                <p>Em métodos com a mesma assinatura, mas com pequenas diferenças entre elas, fica a cargo do compilador escolher qual método será invocado de acordo com os argumentos escolhidos.</p>
+
+                <p>Quando você define um construtor para sua classe, você estå fazendo uma sobrecarga.</p>
+            </section>
+
+            <section>
+                <h2>Classes abstratas</h2>
+                <p>Modelo para classes concretas</p>
+            </section>
+
+            <section>
+                <h2>Classes abstratas</h2>
+                <p>Serve como um "template" para classes que forem seguir sua estrutura.</p>
+                <p>Para definir uma classe abstrata, é usado o modificador <i>abstract</i></p>
+            </section>
+
+            <section>
+                <h2>Características de uma classe abstrata</h2>
+                <ul>
+                    <li>Não pode ser instanciada</li>
+                    <li>Sempre devem ser herdadas por classes concretas</li>
+                    <li>Podem conter métodos com ou sem implementação (métodos abstratos)</li>
+                </ul>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Exemplo de uma classe abstrata:
+                ```java
+                class abstract Funcionario {
+                  String nome;
+                  String cpf;
+                  double salario;
+
+                  public abstract void definirSalario(double valor);
+
+                  public void exibirDadosPessoais() {
+                    return "Nome: " + nome + "\n" + "CPF: " + cpf;
+                  }
+
+                }
+                ```
+                ```java
+                class Gerente extends Funcionario {
+                  String nome;
+                  String cpf;
+                  double salario;
+                  int senha;
+                  int numeroDeFuncionariosGerenciados;
+
+                  // Herdando de uma classe abstrata, e classe filha
+                  // é obrigada a implementar os seus métodos abstratos.
+                  public void definirSalario(double valor) {
+                    return this.salario = valor;
+                  }
+                }
+                ```
+                </script>
+            </section>
+
             <section>
                 <h2>Exercícios</h2>
-                <p>Objetivo desse exercício é para fixar o que aprenderam hoje</p>
-                <center><a href="http://bit.ly/1tbUOb8">Criando modelo <i>Funcionario</i></a></center>
+                <p>Desenvolver um sistema de <a href="exercicios.html">cadastro de funcionários</a></p>
             </section>
 
             <section>
