@@ -1,0 +1,696 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Workshop: Java e Orientação a Objetos | Dia 03</title>
+
+    <meta name="description" content="Slide do segundo dia do workshop Java e Orientação a Objetos">
+    <meta name="author" content="Gilson Filho">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/github.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    if (window.location.search.match(/print-pdf/gi)) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <h1>Java e Orientação a Objetos</h1>
+                <h3>Dia 03</h3>
+                <p>
+                    <small>
+                        Gilson Filho:
+                        <a href="http://github.com/gilsondev">Github</a> / <a href="http://twitter.com/gilsonfilho">@gilsonfilho</a>
+                    </small>
+                </p>
+            </section>
+
+            <section>
+              <h2>Interfaces</h2>
+            </section>
+
+            <section>
+              <p>Interface é um recurso da orientação a objetos que define quais ações devem ser obrigatoriamente executadas a partir de um grupo de classes. </p>
+              <p>Ela "exige" que contenham métodos ou propriedades em comum para um determinado contexto, mas cada um tem sua implementação.</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Estrutura de uma interface Java
+                ```java
+                interface Xpto {
+                  public String foo();
+                  int bar();  // Toda interface é publica por padrão
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Características</h2>
+              <ul>
+                <li>Interface não é uma classe, mas uma entidade</li>
+                <li>Não possui implementação, somente definição dos métodos</li>
+                <li>Todos os métodos são abstratos</li>
+                <li>Métodos são implicitamente públicos e abstratos</li>
+                <li>Não pode fazer instância de uma interface e nem criar construtor</li>
+                <li>Funciona como tipo de "contrato" com classes que a implementam</li>
+              </ul>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Exemplo
+                ```java
+                public interface FiguraGeometrica {
+                  public String getNomeFigura();
+                  public int getArea();
+                  public int getPerimetro();
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Exemplo
+                ```java
+                public class Quadrado implements FiguraGeometrica {
+                  private int lado;
+                  public int getLado() {
+                    return lado;
+                  }
+
+                  public void setLado(int lado) {
+                    this.lado = lado;
+                  }
+
+                  @Override
+                  public int getArea() {
+                    int area = 0;
+                    area = lado * lado;
+                    return area;
+                  }
+
+                  @Override
+                  public int getPerimetro() {
+                    int perimetro = 0;
+                    perimetro = lado * 4;
+                    return perimetro;
+                  }
+
+                  @Override
+                  public String getNomeFigura() {
+                    return "quadrado";
+                  }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ```java
+                public class Triangulo implements FiguraGeometrica {
+
+                    private int base;
+                    private int altura;
+                    private int ladoA;
+                    private int ladoB;
+                    private int ladoC;
+
+                    public int getAltura() {
+                        return altura;
+                    }
+
+                    public void setAltura(int altura) {
+                        this.altura = altura;
+                    }
+
+                    public int getBase() {
+                        return base;
+                    }
+
+                    public void setBase(int base) {
+                        this.base = base;
+                    }
+
+                    public int getLadoA() {
+                        return ladoA;
+                    }
+
+                    public void setLadoA(int ladoA) {
+                        this.ladoA = ladoA;
+                    }
+
+                    public int getLadoB() {
+                        return ladoB;
+                    }
+
+                    public void setLadoB(int ladoB) {
+                        this.ladoB = ladoB;
+                    }
+
+                    public int getLadoC() {
+                        return ladoC;
+                    }
+
+                    public void setLadoC(int ladoC) {
+                        this.ladoC = ladoC;
+                    }
+
+                    @Override
+                    public String getNomeFigura() {
+                        return "Triangulo";
+                    }
+
+                    @Override
+                    public int getArea() {
+                        int area = 0;
+                        area = (base * altura) / 2;
+                        return area;
+                    }
+
+                    @Override
+                    public int getPerimetro() {
+                        int perimetro = 0;
+                        perimetro = ladoA + ladoB + ladoC;
+
+                        return perimetro;
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Classe pode implementar mais de uma interface
+                ```java
+                public interface Veiculo {
+                  public String getNome();
+                  public String getId();
+                }
+                ```
+                ```java
+                public interface Motor {
+                  public String getModelo();
+                  public String getFabricante();
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Alternativa para heranças multiplas
+                ```java
+                public class Carro implements Veiculo, Motor {
+                  @Override
+                  public String getId() { // ... }
+
+                  @Override
+                  public String getNome() { // ... }
+
+                  @Override
+                  public String getFabricante() { // ... }
+
+                  @Override
+                  public String getModelo() { // ... }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Interfaces pode herdar de mais de uma interface
+                Significa que ele herda responsabilidades
+                ```java
+                public interface InterfaceA {
+                  // ...
+                }
+                ```
+                ```java
+                public interface InterfaceB extends InterfaceA {
+                  // ...
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Exceções</h2>
+              <p>Imprevistos acontecem</p>
+            </section>
+
+            <section>
+              <p>Exceções acontecem quando uma determinada ação não foi concluída conforme foi planejado, ou seja, representa situações que normalmente não ocorre, como por exemplo:</p>
+              <p>- Iniciar conexão com banco que não está disponível</p>
+              <p>- Usar atributo que o tipo é uma classe, mas que não foi instanciado, gera o famoso <i>NullPointerException</i></p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Código com erro
+                ```java
+                package com.bsitecnologia.excecoes;
+
+                public class ErroTeste {
+
+                  public static void main(String[] args) {
+                    int[] testeArray = new int[3];
+
+                    // no loop vai gerar um erro porque a quantidade
+                    // é de 3 e não 4.
+                    for (int i = 0; i < 4; i++) {
+                      System.out.println("Indice: " + i + "\n" + "Valor: " + i);
+                      testeArray[i] = i;
+                    }
+                  }
+
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Saída
+                ```java
+                Indice: 0
+                Valor: 0
+                Indice: 1
+                Valor: 1
+                Indice: 2
+                Valor: 2
+                Indice: 3
+                Valor: 3
+                Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: 3
+                  at com.bsitecnologia.excecoes.ErroTeste.main(ErroTeste.java:10)
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Tratando as exceções</h2>
+              <p>Quando algum trecho de código tem um grande risco de gerar exceções, você pode tratar esse bloco usando a sintaxe <i>try</i> e <i>catch</i></p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Exemplo
+                Tratando trecho de acesso a um array
+                ```java
+                package com.bsitecnologia.excecoes;
+
+                public class ErroTeste {
+
+                  public static void main(String[] args) {
+                    int[] testeArray = new int[3];
+
+                    try {
+                      for (int i = 0; i < 4; i++) {
+                        System.out.println("Indice: " + i + "\n" + "Valor: " + i);
+                        testeArray[i] = i;
+                      }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                      System.out.println("Aconteceu um erro: " + e);
+                    }
+                  }
+
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Tipos de exceção</h2>
+              <p>Unchecked e Checked</p>
+            </section>
+
+            <section>
+              <h2>Exceções unchecked</h2>
+              <p>São exceções que não são obrigatórios o tratamento. Pode tratar se quiser.</p>
+              <p>Exemplo de exceções unchecked:</p>
+              <ul>
+                <li>ArrayIndexOutOfBoundsException</li>
+                <li>NullPointerException</li>
+                <li>RuntimeException</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2>Exceções checked</h2>
+              <p>Contrário do unchecked, são exceções que tem a obrigação de tratá-las.</p>
+              <p>Exemplo de exceções unchecked:</p>
+              <ul>
+                <li>ArrayIndexOutOfBoundsException</li>
+                <li>NullPointerException</li>
+                <li>RuntimeException</li>
+                <li>FileNotFoundException</li>
+              </ul>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Exemplo
+                ```java
+                // Gera erro porque é obrigatório tratar esse código
+                class Teste {
+                  public static void metodo() {
+                    new java.io.FileInputStream("arquivo.txt");
+                  }
+                }
+                ```
+                ```
+                Teste.java:3 unreported exception java.io.FileNotFoundException; must be caught
+                ...
+                ```
+                ```java
+                public static void metodo() {
+
+                  try {
+                    new java.io.FileInputStream("arquivo.txt");
+                  } catch (java.io.FileNotFoundException e) {
+                    System.out.println("Nao foi possível abrir o arquivo para leitura");
+                  }
+
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Comando <i>finally</i></h2>
+              <p>Ele é usado para indicar o que deve ser feito após passar no block try ou catch.</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Exemplo
+                ```java
+                try {
+                  // bloco try
+                } catch (IOException ex) {
+                  // bloco catch 1
+                } catch (SQLException sqlex) {
+                  // bloco catch 2
+                } finally {
+                  // bloco que será sempre executado, independente
+                  // se houve ou não exception e se ela foi tratada ou não
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Família das exceções</h2>
+              <center><img src="img/arvore_heranca_throwable.png" alt=""></center>
+            </section>
+
+            <section>
+              <h2>Lançando exceções</h2>
+              <p>Usando <i>throw</i> e <i>throws</i></p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Pode ter situações que deseja lançar uma exceção quando
+                ocorre algum cenário que foge a regra.
+                ```java
+                boolean saca(double valor) {
+                  if (this.saldo < valor) {
+                    return false;
+                  } else {
+                    this.saldo-=valor;
+                    return true;
+                  }
+                }
+                ```
+                ```java
+                void saca(double valor) {
+                  if (this.saldo < valor) {
+                    // Sim, as exceções são classes
+                    throw new IllegalArgumentException();
+                  } else {
+                    this.saldo-=valor;
+                  }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Existem exceções que deseja que outra entidade
+                a trate, como tratar um bloco passível a erros de um método
+                ```java
+                public class TesteString {
+                  // Lançando exceção
+                  private static void aumentarLetras() throws NullPointerException{
+                    String frase = null;
+                    String novaFrase = null;
+                    novaFrase = frase.toUpperCase();
+                    System.out.println("Frase antiga: "+frase);
+                    System.out.println("Frase nova: "+novaFrase);
+                  }
+
+                  public static void main(String args[]) {
+                    try {
+                      aumentarLetras();
+                    } catch(NullPointerException e) {
+                      System.out.println("Ocorreu um NullPointerException ao executar o método aumentarLetras() "+e);
+                    }
+                  }
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Criando sua exceção</h2>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Criando exceção para tratar problema de saldo
+                ```java
+                public class SaldoInsuficienteException extends RuntimeException {
+
+                  SaldoInsuficienteException(String message) {
+                    super(message);
+                  }
+                }
+                ```
+                ```
+                void saca(double valor) {
+                  if (this.saldo < valor) {
+                    throw new SaldoInsuficienteException("Saldo Insuficiente," +
+                                      "tente um valor menor");
+                  } else {
+                    this.saldo-=valor;
+                  }
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Empacotando programas Java</h2>
+              <p>Com várias classes e com a estrutura do seu projeto, fica complicado enviar para ser usado.</p
+              >
+              <p>Uma boa forma é empacotar em um arquivo só. No java, a forma padrão de empacotamento é o ZIP com a extensão JAR (Java ARchive).</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Empacotando um projeto java na linha de comando
+                ```bash
+                jar -cvf projeto.jar com/bsitecnologia/classes/*.class com/bsitecnologia/outropacote/*.class
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Usando *.jar em um projeto
+                ```bash
+                java -classpath projeto.jar com.bsitecnologia.util.OutraClasse
+                ```
+                ```bash
+                java -classpath biblioteca01.jar;biblioteca02.jar com.bsitecnologia.util.OutraClasse
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Javadoc</h2>
+              <p>Documentando seu projeto</p>
+            </section>
+
+            <section>
+              <h2>O que é Javadoc?</h2>
+              <p>É um gerador de documentação para documentar a API dos programas a partir do código-fonte.</p>
+            </section>
+
+            <section>
+              <center><img src="img/javadoc.png" alt=""></center>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Formas de documentar
+                ```java
+                /**
+                 * Classe responsável por moldar as Contas do Banco
+                 *
+                 * @author Manoel Santos da Silva
+                 */
+
+                public abstract class Conta{
+                  ...
+                }
+                ```
+                ```java
+                /**
+                 * Metodo que incrementa o saldo.
+                 * @param valor
+                 */
+
+                public void deposita(double valor) {
+                  ...
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Usando *.jar em um projeto
+                ```bash
+                javadoc *.java -d Docs
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Exercícios</h2>
+              <p>Refatorar o cadastro de funcionários para o uso de interfaces</p>
+              <p>Tratar possíveis erros com <i>exceptions</i>.</p>
+            </section>
+
+            <section>
+                <h2>É isso! Até o próximo dia.</h2>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: 'solarized', // available themes are in /css/theme
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        multiplex: {
+            // Example values. To generate your own, see the socket.io server instructions.
+            secret: '14083659196507749837', // null so the clients do not have control of the master presentation
+            id: '553d8782d3bbee4f', // id, obtained from socket.io server
+            url: 'revealjs.jit.su:80' // Location of your socket.io server
+        },
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+            src: 'lib/js/classList.js',
+            condition: function() {
+                return !document.body.classList;
+            }
+        }, {
+            src: 'plugin/markdown/marked.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/markdown/markdown.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+                hljs.initHighlightingOnLoad();
+            }
+        }, {
+            src: 'plugin/zoom-js/zoom.js',
+            async: true,
+            condition: function() {
+                return !!document.body.classList;
+            }
+        }, {
+            src: 'plugin/notes/notes.js',
+            async: true,
+            condition: function() {
+                return !!document.body.classList;
+            }
+        }, {
+            src: 'http://revealjs.jit.su/socket.io/socket.io.js',
+            async: true
+        }, {
+            src: 'plugin/multiplex/client.js',
+            async: true
+        }, {
+            src: 'plugin/multiplex/master.js',
+            async: true
+        }, ]
+    });
+    </script>
+
+</body>
+
+</html>
