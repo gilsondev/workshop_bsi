@@ -1,0 +1,1068 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Workshop: Java e Orientação a Objetos | Dia 05</title>
+
+    <meta name="description" content="Slide do segundo dia do workshop Java e Orientação a Objetos">
+    <meta name="author" content="Gilson Filho">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/solarized.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/github.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+    if (window.location.search.match(/print-pdf/gi)) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    }
+    </script>
+
+    <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+
+    <div class="reveal">
+
+        <!-- Any section element inside of this container is displayed as a slide -->
+        <div class="slides">
+            <section>
+                <h1>Java e Orientação a Objetos</h1>
+                <h3>Dia 05</h3>
+                <p>
+                    <small>
+                        Gilson Filho:
+                        <a href="http://github.com/gilsondev">Github</a> / <a href="http://twitter.com/gilsonfilho">@gilsonfilho</a>
+                    </small>
+                </p>
+            </section>
+
+            <section>
+              <h2>Enum</h2>
+              <p>Conjunto de constantes armazenados em um bloco parecido com uma classe. Usa a palavra chave <i>enum</i></p>
+            </section>
+
+            <section>
+              <h2>Características</h2>
+              <p>Mesmo tendo declaração e construtor, não é uma classe</p>
+              <p>Implicitamente extende de <i>java.lang.Enum</i></p>
+              <p>Não se cria instâncias de Enum</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Exemplo
+                ```java
+                public enum Cartas {
+                    A, J, Q, K;
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown>
+                <script type="text/template">
+                Para inserir valores dentro do Enum, precisa declarar um construtor para
+                iniciar os atributos
+                ```java
+                public enum CartasEnum {
+                    J(11),
+                    Q(12),
+                    K(13),
+                    A(14);
+
+                    public int valorCarta;
+
+                    CartasEnum(int valor) {
+                        valorCarta = valor;
+                    }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## System.gc
+                Método que sugere à Máquina Virtual de executar o Garbage Collector para limpar objetos não usados.
+                ```java
+                public class Teste {
+                  public static void main(String[] args) {
+                    Foo foo1 = new Foo();
+                    Foo foo2 = new Foo();
+                    Foo foo3 = new Foo();
+
+                    foo3 = foo1;
+                    foo2 = foo1;
+
+                    // Como objeto de foo2 e foo3 três não está sendo
+                    // usado, vou "sugerir" para o GC elimina-los.
+                    // Não é necessário porque o GC sabe a melhor
+                    // hora de fazer isso.
+                    System.gc();
+                  }
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Mais informações sobre System</h2>
+              <center><a href="http://docs.oracle.com/javase/6/docs/api/java/lang/System.html">http://docs.oracle.com/javase/6/docs/api/java/lang/System.html</a></center>
+            </section>
+
+            <section>
+              <h2>java.lang.Object</h2>
+              <p>Onde tudo começa</p>
+            </section>
+
+            <section>
+              <h2>Classe Object</h2>
+              <p>No Java toda a classe que é criada, ela tem a obrigação de herdar de outra. Assim todas as classes tem uma superclasse.</p>
+              <p>Quando você não herda nenhuma classe, o Java de forma implícita define que sua classe herdará de <i>Object</i>.</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ### Você não está vendo, mas ela é classe filha de java.lang.Object
+                ```java
+                // Não achando a palavra "extends", ele define isso automaticamente.
+                public class ClasseFicticia {
+                  // ...
+                }
+                ```
+                ```java
+                // Fazendo dessa forma vai ser a mesma coisa
+                public class ClasseFicticia extends Object {
+                  // ...
+                }
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Todas as classes, <strong>sem exceção</strong>, herdam de Object.</h2>
+            </section>
+
+            <section>
+              <h2>Métodos de Object</h2>
+              <p>toString e equals</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                **toString()** é usado para exibir a representação da classe
+                ```java
+                Conta c = new Conta();
+                System.out.println(c.toString());
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Por padrão ele exibe nome da classe e um identificador
+                ```bash
+                Conta@34f5d74a  // Esse identificador é criada pela VM
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                **toString()** pode ser reescrito
+                ```java
+                class Conta {
+                  private double saldo;
+                  // outros atributos...
+
+                  // ...
+
+                  public String toString() {
+                    return "Uma conta com valor: " + this.saldo;
+                  }
+                }
+                ```
+                ```java
+                Conta c = new Conta(100);
+                System.out.println(c.toString()); //imprime: Uma conta com valor: 100.
+                ```
+                ```java
+                Conta c = new Conta(100);
+                System.out.println(c); // O toString é chamado pela classe PrintStream
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                **equals(Object object)** é usado para verificar se o parâmetro passado
+                é igual ao Object recebido para retornar um boolean
+                ```java
+                Conta c1 = new Conta();
+                Conta c2 = new Conta();
+
+                // Não é igual, porque o padrão é fazer
+                // um '==' com o objeto recebido como argumento.
+                if (c1.equals(c2)) {
+                  System.out.println("São iguais");
+                } else {
+                  System.out.println("Não são iguais");
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                O interessante é sobrescrever caso seja necessário
+                ```java
+                public class Conta {
+                  private double saldo;
+                  // outros atributos...
+
+                  // Outros métodos
+
+                  public boolean equals(Object object) {
+                    Conta outraConta = (Conta) object;
+                    if (this.saldo == outraConta.saldo) {
+                      return true;
+                    }
+                    return false;
+                  }
+
+                  // toString()
+                }
+                ```
+                </script>
+            </section>
+
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                É uma boa prática retornar false se o objeto passado
+                não é do tipo a ser comparado. Para fazer isso, vamos
+                usar o **instanceof**
+                ```java
+                public boolean equals(Object object) {
+                  if (!(object instanceof Conta))
+                    return false;
+                  Conta outraConta = (Conta) object;
+                  return this.saldo == outraConta.saldo;
+                }
+                ```
+                </script>
+            </section>
+            <section>
+              <h2>Casting de referências</h2>
+              <p>Transformando um objeto para outro</p>
+            </section>
+
+            <section>
+              <p>Como toda classe é um <i>Object</i>, seria interessante usá-las nos parâmetros para aceitar qualquer tipo de classe</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Vamos guardar qualquer tipo de objeto!
+                ```java
+                public class GuardadorDeObjetos {
+                  private Object[] arrayDeObjetos = new Object[100];
+                  private int posicao = 0;
+
+                  public void adicionaObjeto(Object object) {
+                    this.arrayDeObjetos[this.posicao] = object;
+                    this.posicao++;
+                  }
+
+                  public Object pegaObjeto(int indice) {
+                    return this.arrayDeObjetos[indice];
+                  }
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Usando o nosso _GuardadorDeObjetos_
+                ```java
+                GuardadorDeObjetos guardador = new GuardadorDeObjetos();
+                Conta conta = new Conta();
+                guardador.adicionaObjeto(conta);
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Vamos capturar um objeto e usarmos
+                ```java
+                // pega a conta referenciado como objeto
+                Object object = guardador.pegaObjeto(0);
+
+                // será que posso invocar getSaldo em Object? :
+                object.getSaldo();
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Invocar o método de saldo não dá. Então vamos atribuir
+                a uma variável do tipo _Conta_
+                ```java
+                Object object = guardador.pegaObjeto(0);
+                object.getSaldo();
+
+                // Não compila porque o Java não tem garantia
+                // de que a variável object é uma conta.
+                //
+                // Por não saber, é disparado uma exceção
+                // do tipo ClassCastException
+                Conta contaResgatada = object;
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Com o casting de referências resolve
+                Nós "avisamos" ao Java de que _object_ é uma Conta.
+                ```java
+                Object object = guardador.pegaObjeto(0);
+                object.getSaldo();
+
+                // Agora compila :)
+                Conta contaResgatada = (Conta) object;
+                ```
+                </script>
+            </section>
+
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Usando o projeto de funcionarios
+                Nós "avisamos" ao Java de que _funcionario_ é uma Gerente.
+                ```java
+                Funcionario funcionario = new Gerente();
+
+                // Não compila porque nem todo funcionário é um gerente
+                Gerente gerente = funcionario;
+                ```
+                ```java
+                // ...
+
+                // Agora compila
+                Gerente gerente = (Gerente) funcionario;
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Classes Wrappers</h2>
+              <p>Tipos primitivos como objetos</p>
+            </section>
+
+            <section>
+              <p>Os tipos primitivos diferente dos objetos, suas variáveis armazenam seu valor de fato e consome menos memória.</p>
+              <p>Mas pode acontecer casos em que o determinado tipo de valor precisa ser representado como um objeto.</p>
+            </section>
+
+            <section>
+              <p><strong>Classes wrapper</strong> são classes especiais que possuem métodos que tem a capacidade de fazer conversões para variáveis primitivas, como também encapsular esses tipos primitivos, para assim trabalhar como objetos Java.</p>
+            </section>
+
+            <section>
+              <center><img src="img/OOP_WrapperClass.png" alt=""></center>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Convertendo string para int
+                ```java
+                String s = "101";
+                int i = Integer.parseInt(s);
+                ```
+                </script>
+            </section>
+
+            <section>
+              <p>As classes <strong>Double</strong>, <strong>Short</strong>, etc tem o mesmo método como <i>parseDouble</i>, <i>parseShort</i> e assim por diante.</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Como foi falado, eles também servem para embrulho(wrapping) dos tipos primitivos porque você não pode referenciar tipos primitivos. Segue um exemplo
+                ```java
+                int i = 5;
+                Integer x = new Integer(i);
+                guardador.adiciona(x);
+                ```
+                Com isso você pode ter ume referência porque a variável está "coberta" pela classe Integer.
+                </script>
+            </section>
+
+            <section>
+              <h2>Classe <i>String</i></h2>
+              <p>Ela guarda referência e não valor, como acontece com os tipos primitivos</p>
+              <p>Pode-se instanciar, já que é uma classe Java</p>
+              <p>Ela é imutável, ou seja, o valor de uma variável String não muda</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Criando String com new
+                ```java
+                String x = new String("Variavel X");
+                String y = new String("Variavel Y");
+                ```
+
+                O equals é alterado na classe String
+                ```java
+                String x = new String("AAA");
+                String y = new String("AAA");
+
+                if (x.equals(y)) {
+                  System.out.println("consideramos iguais no critério de igualdade");
+                }
+                else {
+                  System.out.println("consideramos diferentes no critério de igualdade");
+                }
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                String não muda
+                ```java
+                String palavra = "workshopjava";
+                palavra.toUpperCase();    // Deixa todas maiusculas
+
+                // Vai imprimir "workshopjava", porque ela não é mutável
+                System.out.println(palavra);
+                ```
+
+                Caso queira pegar a alteração que fez
+                ```java
+                String palavra = "workshopjava";
+                palavra = palavra.toUpperCase();
+
+                // Imprime "WORKSHOPJAVA" porque palavra recebeu o valor alterado
+                System.out.println(palavra);
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Mais informações da classe String</h2>
+              <center><a href="http://docs.oracle.com/javase/6/docs/api/java/lang/String.html">http://docs.oracle.com/javase/6/docs/api/java/lang/String.html</a></center>
+            </section>
+
+            <section>
+              <h2>Collections Framework</h2>
+              <p>Porque arrays dão trabalho</p>
+            </section>
+
+              <section>
+                <h2>Arrays são legais mas...</h2>
+                <p>- É bastante trabalhoso de usar</p>
+                <p>- Não podemos redimensionar</p>
+                <p>- É impossível buscar diretamente um elemento sem saber qual índice pertence</p>
+                <p>- Pra saber quais elementos foram preenchidos ou não, só criando métodos auxiliares</p>
+              </section>
+
+            <section>
+              <p><strong>Collections</strong> são um conjunto de classes que representam estrutura de dados avançados.</p>
+              <p>Eles estão agrupados no pacote <i>java.util</i></p>
+            </section>
+
+            <section>
+              <h2>Tipos de estruturas</h2>
+              <ul>
+                <li>Listas (List)</li>
+                <li>Conjuntos (Set)</li>
+                <li>Mapas (Map)</li>
+              </ul>
+            </section>
+
+            <section>
+              <h2>Listas</h2>
+              <p>É uma coleção que permite elementos duplicados e segue uma ordenação específica.</p>
+              <p>Você já tem a certeza que a medida que vai inserindo, esse vai ser a ordem dos elementos.</p>
+              <p>Classes que seguem princípios de uma lista, implementa a interface <i>java.util.List</i></p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Usando ArrayList
+                Essa classe é a implementação mais utilizada
+                ```java
+                // Criando um ArrayList
+                ArrayList lista = new ArrayList();
+
+                // Abstraindo a lista a partir da interface (recomendado)
+                List lista = new ArrayList();
+
+                // Inserindo dados na lista
+                List lista = new ArrayList();
+                lista.add("Gilson");
+                lista.add("Mariana");
+                lista.add("Tarcisio");
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Agora pode ter uma lista de contas
+                ```java
+                Conta c1 = new Conta();
+                Conta c2 = new Conta();
+                Conta c3 = new Conta();
+                Conta c4 = new Conta();
+
+                // Preenchendo as contas
+
+                // Inserindo na lista
+                List lista = new ArrayList();
+                lista.add(c1);
+                lista.add(c2);
+                lista.add(c3);
+                lista.add(c4);
+
+                // Usando método size para saber o seu tamanho
+                System.out.println("Quantidade de contas: " + lista.size());
+                ```
+                </script>
+            </section>
+
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Usando método _get()_ para recuperar elemento da lista
+                ```java
+                // ...
+
+                List lista = new ArrayList();
+                // Inserindo objetos na lista
+
+                // Não consigo pegar dessa forma porque o get retorna
+                // um Object já que a nossa lista está trabalhando com essa classe
+                Conta conta = lista.get(0);
+                System.out.println("Primeira Conta: " + conta.getSaldo())
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Usando método _get()_ para recuperar elemento da lista
+                ```java
+                // ...
+
+                List lista = new ArrayList();
+                // Inserindo objetos na lista
+
+                // Fazendo casting para acessar saldo
+                Conta conta = (Conta) lista.get(0);
+                System.out.println("Primeira Conta: " + conta.getSaldo())
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Outros métodos de ArrayList
+                ```java
+                // Removendo item da lista
+                Conta conta = (Conta) lista.get(0);
+                lista.remove(conta)
+
+                // Verifica se elemento está na lista
+                Conta estaNaLista = lista.get(1);
+                Conta naoEstaNaLista = conta;
+
+                lista.contains(estaNaLista);  // Retorna true
+                lista.contains(naoEstaNaLista);  // Retorna false
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Usando LinkedList
+                Outra classe que implementa lista, mas que pode obter, inserir ou remover
+                o primeiro e último elemento da lista
+                ```java
+                // Criando um LinkedList
+                List lista = new LinkedList();
+
+                // Inserindo dados na lista
+                lista.add("Gilson");
+                lista.addLast("Mariana");
+                lista.addFirst("Tarcisio");
+                lista.add("Osvaldo");
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Vector</h2>
+              <p>Outra implementação de lista, mas que está no Java desde a versão 1.0</p>
+              <p>Foi adaptada para ser inserida no Collections, mas não é muito usada.</p>
+            </section>
+
+            <section>
+              <h2>Listas com Generics</h2>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Nas listas ele recebe classes do tipo _Object_ para ser construida
+                ```java
+                Conta conta = new Conta();
+
+                // Criando um ArrayList
+                List lista = new ArrayList();
+                lista.add(conta);
+                lista.add("String");
+                lista.add(new Integer(10));
+                ```
+                Isso complica quando for recuperar porque você não tem certeza do tipo
+                que vai ser retornado.
+                </script>
+            </section>
+
+            <section>
+              <p>No Java temos o recurso chamado de <strong>Generics</strong>, que ajuda a restringir listas para um determinado tipo de objetos.</p>
+              <p>Ou seja, ele foi feito para resolver o trabalho repetitivo de casts.</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Nas listas ele recebe classes do tipo _Object_ para ser construida
+                ```java
+                List<Conta> contas = new ArrayList<Conta>();
+                contas.add(c1);
+                contas.add(c3);
+                contas.add(c2);
+
+                // Se tentar inserir um objeto que não seja Conta, não compila
+                contas.add("Objeto String que não é Conta");
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2><i>Collections.sort()</i></h2>
+              <p>Método estático responsável por ordenar as listas de forma alfabética</p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Exemplo
+                ```java
+                List<String> lista = new ArrayList<String>();
+                lista.add("Gilson");
+                lista.add("Tarcisio");
+                lista.add("Mariana");
+                lista.add("Ana");
+
+                // repare que o toString de ArrayList foi sobrescrito:
+                System.out.println(lista);
+
+                Collections.sort(lista);
+
+                System.out.println(lista);
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Saída no console
+                ```java
+                [Gilson, Tarcisio, Mariana, Ana]
+                [Ana, Gilson, Mariana, Tarcisio]
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Como ordernar meus objetos?</h2>
+            </section>
+
+            <section>
+              <p>O método <i>Collections.sort</i> usa um critério que é definido pelo método <i>compareTo</i>.</p>
+              <p>Ele vem da interface <i>java.lang.Comparable</i> que classes como <i>String</i> usa para comparação.</p>
+              <p>No caso da classe String, ela definiu um critério de comparação de forma alfabética.</p>
+            </section>
+
+            <section>
+              <p><i>Comparable retorna três tipos de valores</i></p>
+              <ul>
+                <li>Retorna <strong>zero</strong> se o objeto comparado for igual</li>
+                <li>Retorna <strong>número negativo (ex.: -1)</strong> se o objeto comparado for menor</li>
+                <li>Retorna <strong>número positivo</strong> se o objeto for maior</li>
+              </ul>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                ## Exemplo
+                ```java
+                public class Conta implements Comparable<Conta> {
+
+                  // ... todo o código anterior fica aqui
+
+                  public int compareTo(ContaCorrente outra) {
+                    if (this.saldo < outra.saldo) {
+                      return -1;
+                    }
+
+                    if (this.saldo > outra.saldo) {
+                      return 1;
+                    }
+
+                    return 0;
+                  }
+                }
+                ```
+                Quando invocar _Collections.sort_ ele vai processar esse nosso método acima e usar como critério de ordenação
+                </script>
+            </section>
+
+            <section>
+              <h2>Mais sobre a classe Collections</h2>
+              <center><a href="http://docs.oracle.com/javase/6/docs/api/java/util/Collections.html">http://docs.oracle.com/javase/6/docs/api/java/util/Collections.html</a></center>
+            </section>
+
+
+            <section>
+              <h2>Conjuntos</h2>
+              <p>Seguindo o princípio matemático, é uma coleção que não permite elementos duplicados</p>
+              <p>A ordem em que são inseridos os elementos, pode não ser a ordem no qual é usado no ArrayList, por exemplo.</p>
+              <p>Classes que seguem princípios de um conjunto, implementa a interface <i>java.util.Set</i></p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Criando um conjunto com HashSet
+                ```java
+                Set<String> cargos = new HashSet<String>();
+
+                cargos.add("Gerente");
+                cargos.add("Diretor");
+                cargos.add("Presidente");
+                cargos.add("Secretária");
+                cargos.add("Funcionário");
+                cargos.add("Diretor"); // repetido!
+
+                // imprime na tela todos os elementos
+                System.out.println("Cargos com HashSet: " + cargos);
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Saida no console
+                ```java
+                Cargos com HashSet: [Presidente, Gerente, Funcionário, Secretária, Diretor]
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Criando um conjunto com LinkedHashSet
+                ```java
+                Set<String> cargos = new LinkedHashSet<String>();
+
+                cargos.add("Gerente");
+                cargos.add("Diretor");
+                cargos.add("Presidente");
+                cargos.add("Secretária");
+                cargos.add("Funcionário");
+                cargos.add("Diretor"); // repetido!
+
+                // imprime na tela todos os elementos
+                System.out.println("Cargos com LinkedHashSet: " + cargos);
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Saida no console
+                ```java
+                Cargos com LinkedHashSet: [Gerente, Diretor, Presidente, Secretária, Funcionário]
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Criando um conjunto com TreeSet
+                ```java
+                Set<String> cargos = new TreeSet<String>();
+
+                cargos.add("Gerente");
+                cargos.add("Diretor");
+                cargos.add("Presidente");
+                cargos.add("Secretária");
+                cargos.add("Funcionário");
+                cargos.add("Diretor"); // repetido!
+
+                // imprime na tela todos os elementos
+                System.out.println("Cargos com TreeSet: " + cargos);
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Saida no console
+                ```java
+                Cargos com TreeSet: [Diretor, Funcionário, Gerente, Presidente, Secretária]
+                ```
+                </script>
+            </section>
+
+            <section>
+              <h2>Mapas</h2>
+              <p>Composto por conjunto de associações do tipo chave e valor</p>
+              <p>Classes que seguem princípios de um mapa, implementa a interface <i>java.util.Map</i></p>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Exemplo
+                ```java
+                Conta c1 = new Conta();
+                c1.deposita(10000);
+
+                Conta c2 = new Conta();
+                c2.deposita(3000);
+
+                // cria o mapa
+                Map<String, Conta> mapaDeContas = new HashMap<Conta>();
+
+                // adiciona duas chaves e seus respectivos valores
+                mapaDeContas.put("diretor", c1);
+                mapaDeContas.put("gerente", c2);
+
+                // qual a conta do diretor? (sem casting!)
+                Conta contaDoDiretor = mapaDeContas.get("diretor");
+                System.out.println(contaDoDiretor.getSaldo());
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Criando mapas com HashMap
+                ```java
+                // cria o mapa
+                Map<String, String> mapaDeLetras = new HashMap<Conta>();
+
+                mapaDeLetras.put("Alegria", "Letra A");
+                mapaDeLetras.put("Bola", "Letra B");
+                mapaDeLetras.put("Cacau", "Letra C");
+                mapaDeLetras.put("Doce", "Letra D");
+
+                System.out.println("Mapa com HashMap: " + mapaDeLetras);
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Saida no console
+                ```java
+                Mapa com HashMap: {Bola=Letra B, Doce=Letra D, Alegria=Letra A, Cacau=Letra C}
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Criando mapas com TreeMap
+                ```java
+                // cria o mapa
+                Map<String, String> mapaDeLetras = new TreeMap<Conta>();
+
+                mapaDeLetras.put("Alegria", "Letra A");
+                mapaDeLetras.put("Bola", "Letra B");
+                mapaDeLetras.put("Cacau", "Letra C");
+                mapaDeLetras.put("Doce", "Letra D");
+
+                System.out.println("Mapa com TreeMap: " + mapaDeLetras);
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Saida no console
+                ```java
+                Mapa com TreeMap: {Alegra=Letra A, Bola=Letra B, Carambola=Letra C, Dado=Letra D}
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Criando mapas com Hashtable
+                ```java
+                // cria o mapa
+                Map<String, String> mapaDeLetras = new Hashtable<Conta>();
+
+                mapaDeLetras.put("Alegria", "Letra A");
+                mapaDeLetras.put("Bola", "Letra B");
+                mapaDeLetras.put("Cacau", "Letra C");
+                mapaDeLetras.put("Doce", "Letra D");
+
+                System.out.println("Mapa com Hashtable: " + mapaDeLetras);
+                ```
+                </script>
+            </section>
+
+            <section data-markdown contenteditable>
+                <script type="text/template">
+                Saida no console
+                ```java
+                Mapa com Hashtable: {Alegra=Letra A, Bola=Letra B, Carambola=Letra C, Dado=Letra D}
+                ```
+                </script>
+            </section>
+
+            <section>
+              <p>Algumas observações</p>
+              <p>- O <i>HashMap</i> e o <i>Hashtable</i> diferenciam no caso em que o <i>Hashtable</i> <strong>não aceita valores nulos na chave e no valor</strong></p>
+              <p>- O TreeMap <strong>não aceita valores nulos na chave</strong> porque acaba usando o compareTo da classe para ordenação</p>
+            </section>
+
+            <section>
+              <h2>Classe <i>Properties</i></h2>
+              <p>Essa classe herda de <i>Hashtable</i> e faz parte das Collections.</p>
+              <p>Acesse a documentação pra saber mais sobre ela</p>
+              <center><a href="http://docs.oracle.com/javase/6/docs/api/java/util/Properties.html">http://docs.oracle.com/javase/6/docs/api/java/util/Properties.html</a></center>
+            </section>
+
+            <section>
+              <h2><i>Collections Framework</i></h2>
+              <center><img src="img/java-collection-hierarchy.png" alt=""></center>
+            </section>
+
+            <section>
+              <h2>Exercícios</h2>
+              <p>- Eliminar o uso de arrays no Cadastro de Funcionários usando um tipo de coleção que achar melhor</p>
+              <p>- Sobrescrever o método <i>toString()</i> das classes</p>
+              <p>- Na listagem dos funcionários, exibir na ordem alfabética</p>
+              <p>- Customize a comparação para order pelo seu saldo</p>
+            </section>
+
+            <section>
+                <h2>É isso! Até o próximo dia.</h2>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script>
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: 'solarized', // available themes are in /css/theme
+        transition: 'linear', // default/cube/page/concave/zoom/linear/fade/none
+
+        multiplex: {
+            // Example values. To generate your own, see the socket.io server instructions.
+            secret: '14083659196507749837', // null so the clients do not have control of the master presentation
+            id: '553d8782d3bbee4f', // id, obtained from socket.io server
+            url: 'revealjs.jit.su:80' // Location of your socket.io server
+        },
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [{
+            src: 'lib/js/classList.js',
+            condition: function() {
+                return !document.body.classList;
+            }
+        }, {
+            src: 'plugin/markdown/marked.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/markdown/markdown.js',
+            condition: function() {
+                return !!document.querySelector('[data-markdown]');
+            }
+        }, {
+            src: 'plugin/highlight/highlight.js',
+            async: true,
+            callback: function() {
+                hljs.initHighlightingOnLoad();
+            }
+        }, {
+            src: 'plugin/zoom-js/zoom.js',
+            async: true,
+            condition: function() {
+                return !!document.body.classList;
+            }
+        }, {
+            src: 'plugin/notes/notes.js',
+            async: true,
+            condition: function() {
+                return !!document.body.classList;
+            }
+        }, {
+            src: 'http://revealjs.jit.su/socket.io/socket.io.js',
+            async: true
+        }, {
+            src: 'plugin/multiplex/client.js',
+            async: true
+        }, {
+            src: 'plugin/multiplex/master.js',
+            async: true
+        }, ]
+    });
+    </script>
+
+</body>
+
+</html>
